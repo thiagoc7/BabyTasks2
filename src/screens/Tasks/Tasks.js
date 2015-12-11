@@ -4,14 +4,16 @@ const {
     Component,
     StyleSheet,
     ScrollView,
-    Text,
     View
     } = React;
 
 import Create from './../Create/Create';
 import NavigationFlag from './../../components/NavigationFlag';
+import Check from './Types/Check';
+import Timer from './Types/Timer';
 
 import { swipeSize } from './../../styles';
+import { state } from './initialState';
 
 const styles = StyleSheet.create({
   container: {
@@ -29,6 +31,7 @@ export default class Tasks extends Component {
 
     this.state = {
       yOffset: 0,
+      tasks: state
     }
   }
 
@@ -57,7 +60,10 @@ export default class Tasks extends Component {
           </NavigationFlag>
 
           <View style={styles.container}>
-            <Text style={{color: '#fff'}}>Tasks</Text>
+            {this.state.tasks.map(task => task.type == 'check' ?
+                <Check task={task} key={task.id}/> :
+                <Timer task={task} key={task.id}/>
+            )}
           </View>
 
 
