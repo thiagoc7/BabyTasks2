@@ -1,0 +1,3 @@
+rootProject.name = 'BabyTasks2'
+
+include ':app'
